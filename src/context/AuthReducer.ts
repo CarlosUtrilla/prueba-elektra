@@ -1,7 +1,7 @@
 import {types} from "./Types"
-import { AuthActions, Session } from './interfaces';
+import { AuthActions, ISession } from './interfaces';
 
-export const AuthReducer = (state: Session, action: AuthActions): Session => {
+export const AuthReducer = (state: ISession, action: AuthActions): ISession => {
     switch (action.type) {
         case types.login:
             return {

@@ -1,4 +1,4 @@
-interface Account{
+interface IAccount{
     username: string;
     password: string;
 }

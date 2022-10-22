@@ -1,4 +1,4 @@
-export interface Session{
+export interface ISession{
     username?: string;
     password?: string;
     logged: boolean;
@@ -10,11 +10,11 @@ export interface AuthActions{
 
 export interface AuthReducer{
     types: Types;
-    action: Session;
+    action: ISession;
 }
 
 export interface AuthContext {
-    logginState: Session;
+    logginState: ISession;
     login: (username: string, password: string) => boolean;
     logout: () => void;
 }

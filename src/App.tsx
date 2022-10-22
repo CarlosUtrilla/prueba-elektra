@@ -4,9 +4,20 @@ import { Login } from './pages/Login/Login'
 import AuthProvider from './context/AuthProvider';
 import Router from './router/router';
 
+import type {} from '@mui/x-date-pickers/themeAugmentation';
+
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
+  },
+  components: {
+    MuiDatePicker: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'red',
+        },
+      },
+    },
   },
 });
 

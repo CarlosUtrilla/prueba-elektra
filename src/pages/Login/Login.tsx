@@ -13,7 +13,7 @@ export const Login = () => {
 
     const history = useHistory()
 
-    const handleSubmit = (values: Account) => {
+    const handleSubmit = (values: IAccount) => {
         const isLoggin = login(values.username, values.password);
         if (isLoggin) {
             setErrorLoggin(false)
@@ -22,7 +22,7 @@ export const Login = () => {
             setErrorLoggin(true)
         }
     }
-    const validate = (values:Account) => {
+    const validate = (values:IAccount) => {
         const errors: {[key:string]: string} = {}
         if (!values.username) {
             errors.username = "Por favor ingresa un usuario."
@@ -46,7 +46,7 @@ export const Login = () => {
                                 password: "",
                             }}
           >
-              {({handleChange, handleBlur,handleSubmit, values, errors}) => (
+              {({handleChange, handleBlur, handleSubmit, values, errors}) => (
                   <form className='login__container' onSubmit={handleSubmit}>
                   <h2>Inicio de sesión</h2>
                   <span className={errorLoggin ? "error": ""}>{errorLoggin? "Los datos ingresados son incorrectos": "Ingrese sus datos para inciar sesión"}</span>
