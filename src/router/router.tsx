@@ -1,5 +1,6 @@
 import React from 'react'
 import {HashRouter, Route, Switch} from "react-router-dom"
+import { Header } from '../components/Header/Header';
 import { Employees } from '../pages/Employees/Employees';
 import { Login } from '../pages/Login/Login';
 import { Route404 } from '../pages/route404/route404';
@@ -7,7 +8,8 @@ import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 const Router = () => {
   return (
-      <HashRouter>
+    <HashRouter>
+        <Header/>
         <Switch>
           <PublicRoute path='/' exact>
              <Login />

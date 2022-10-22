@@ -1,10 +1,14 @@
-import React,{ useState } from 'react'
+import React,{ useState, useEffect } from 'react'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material'
 import { IEmployee } from '../../interfaces'
 import moment from 'moment';
 const ROWS_PER_PAGE = 10;
 export const EmployeesTable = ({ data }: { data: IEmployee[] }) => {
-    const [page, setPage] = useState(0)
+  const [page, setPage] = useState(0)
+  useEffect(() => {
+    setPage(0)
+  }, [data])
+  
   return (
     <TableContainer component={Paper} className="employees__table">
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -40,7 +44,7 @@ export const EmployeesTable = ({ data }: { data: IEmployee[] }) => {
           count={data.length}
           rowsPerPage={ROWS_PER_PAGE}
           page={page}
-          onPageChange={(e,newPage)=>setPage(newPage)}
+          onPageChange={(e, newPage)=>setPage(newPage)}
         />
     </TableContainer>
   )

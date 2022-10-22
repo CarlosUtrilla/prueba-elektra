@@ -19,13 +19,13 @@ export const Employees = () => {
   const [openModal, setOpenModal] = useState(false)
 
   useEffect(() => {
-    handleGetEmployees();
+    if (employeesList.length <= 0) {
+      handleGetEmployees();
+    }
   }, [])
 
   const handleGetEmployees = () => { 
-    if (employeesList.length <= 0) {
       getEmployees().then(data => setEmployeesList(data));
-    }
   }
 
   const applyFilters = (filters: IEmployeeWithoutId) => {
