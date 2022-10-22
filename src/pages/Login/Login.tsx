@@ -1,20 +1,28 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { TextField, Button } from '@mui/material';
-import {Formik} from "formik"
+import { Formik } from "formik"
 //Style
 import "./login.scss"
 import { AuthContext } from '../../context/AuthContext';
+import { useHistory } from 'react-router-dom';
 
 export const Login = () => {
-    const { login } = useContext(AuthContext);
+    const { login, logginState } = useContext(AuthContext);
+    useEffect(() => {
+        if (logginState.logged) {
+            history.replace("/employees")
+        }
+    },[])
 
     const [errorLoggin, setErrorLoggin] = useState(false);
+
+    const history = useHistory()
 
     const handleSubmit = (values: Account) => {
         const isLoggin = login(values.username, values.password);
         if (isLoggin) {
-            window.location.href = '/123';
             setErrorLoggin(false)
+            history.replace("/employees")
         } else {
             setErrorLoggin(true)
         }
