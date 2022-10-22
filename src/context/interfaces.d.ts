@@ -1,6 +1,5 @@
 export interface ISession{
-    username?: string;
-    password?: string;
+    token?:string;
     logged: boolean;
 }
 

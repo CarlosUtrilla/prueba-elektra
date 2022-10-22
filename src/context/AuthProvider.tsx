@@ -1,11 +1,11 @@
-import { useEffect, useReducer } from 'react';
+import {  useReducer } from 'react';
 import { AuthContext } from './AuthContext';
 import { AuthReducer } from './AuthReducer';
 import { types } from "./Types"
+import { generateID } from '../utils';
 
 const init = () => {
-    const user = JSON.parse(localStorage.getItem('session')!)
-    console.log("user", user)
+    const user = JSON.parse(sessionStorage.getItem('session')!)
     return {
         logged: Boolean(user),
         ...user
@@ -17,15 +17,12 @@ const AuthProvider = ({ children }: {children: React.ReactNode}) => {
     const [state, dispatch] = useReducer(AuthReducer, { logged: false }, init)
     const login = (username: string, password: string) => {
         if (username === "user_12" && password === "123456") {
-            const user = {
-                username,
-                password
-            }
+            const token = generateID()
             dispatch({
                 type: types.login,
-                ...user
+                token
             })
-            localStorage.setItem('session', JSON.stringify(user));
+            sessionStorage.setItem('session', JSON.stringify(token));
             return true;
         }
         return false;
@@ -34,11 +31,8 @@ const AuthProvider = ({ children }: {children: React.ReactNode}) => {
         dispatch({
             type: types.logout
         })
-        localStorage.removeItem('session')
+        sessionStorage.removeItem('session')
     }
-    useEffect(() => {
-        console.log(state)
-    },[state])
     return (
         <AuthContext.Provider value={{
             logginState: state,

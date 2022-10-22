@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button } from '@mui/material';
+import { Alert, Button, Snackbar } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import moment from 'moment';
 
@@ -17,6 +17,7 @@ export const Employees = () => {
   const [employeesList, setEmployeesList] = useState<IEmployee[]>([])
   const [employeesListWithFilter, setEmployeesListWithFilter] = useState<IEmployee[]>([])
   const [openModal, setOpenModal] = useState(false)
+  const [openAlert, setOpenAlert] = useState(false)
 
   useEffect(() => {
     if (employeesList.length <= 0) {
@@ -35,6 +36,9 @@ export const Employees = () => {
       (filters.last_name && normalizeString(c.last_name).includes(normalizeString(filters.last_name)))
     )
     setEmployeesListWithFilter(newFilter)
+    if (newFilter.length <= 0) {
+      setOpenAlert(true)
+    }
   }
   const onSuccess = () => {
     handleGetEmployees()
@@ -60,6 +64,11 @@ export const Employees = () => {
           <AddNewEmployee onSuccess={onSuccess} />
         </div>
       </Modal>
+      <Snackbar  anchorOrigin={{ vertical:"top", horizontal: "center" }} open={openAlert} autoHideDuration={4000} onClose={() => setOpenAlert(false)}>
+            <Alert onClose={() => setOpenAlert(false)} severity={"warning"} sx={{ width: '100%' }}>
+                No se encontraron resultados del filtro aplicado
+            </Alert>
+      </Snackbar>
     </div>
   )
 }

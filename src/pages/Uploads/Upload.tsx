@@ -39,7 +39,7 @@ export const Upload = () => {
             <Alert onClose={() => setSuccessMessage(undefined)} severity={successMessage === UploadImageResponse.success  ? "success" : "warning" } sx={{ width: '100%' }}>
                 {successMessage}
             </Alert>
-      </Snackbar>
+        </Snackbar>
     </div>
   )
 }
