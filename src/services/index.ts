@@ -15,3 +15,4 @@ export function Request<T>({ uri= "", body= {}, method= "GET" }: IRequest): Prom
     }).then(data => { return data.json() as T }).catch(() => { throw new Error })
 
 }
+

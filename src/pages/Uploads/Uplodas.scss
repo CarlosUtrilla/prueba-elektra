@@ -4,7 +4,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 2rem;
+	gap: 1rem;
 	padding: 2rem 0;
 	.drag-and-drop {
 		span,
@@ -12,32 +12,8 @@
 			color: $font-color;
 		}
 	}
-	.gallery {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 2rem;
-	}
-	.gallery-slider {
-		overflow: hidden;
-		width: 100%;
-	}
-	.gallery-items {
-		display: flex;
-		justify-content: center;
-		gap: 1rem;
-		width: fit-content;
-		transition: all 0.3s ease;
-		img {
-			width: 600px;
-			height: 400px;
-			object-fit: contain;
-			border-radius: 0.5em;
-			-webkit-animation: flip-in-ver-right 0.5s
-				cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-			animation: flip-in-ver-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-				both;
-		}
+	.gallery-container {
+		padding: 0 2rem;
 	}
 }
 @keyframes flip-in-ver-right {

@@ -15,3 +15,4 @@ export interface RESTEmployee {
 export interface DataEmployees {
     employees: IEmployee[];
 }
+
