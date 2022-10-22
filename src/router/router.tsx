@@ -3,17 +3,18 @@ import {HashRouter, Route, Switch} from "react-router-dom"
 import { Employees } from '../pages/Employees/Employees';
 import { Login } from '../pages/Login/Login';
 import { Route404 } from '../pages/route404/route404';
-import { PrivateRouter } from './PrivateRouter';
+import { PrivateRoute } from './PrivateRoute';
+import { PublicRoute } from './PublicRoute';
 const Router = () => {
   return (
       <HashRouter>
         <Switch>
-          <Route path='/' exact>
+          <PublicRoute path='/' exact>
              <Login />
-          </Route>
-          <PrivateRouter path='/employees/' exact>
+          </PublicRoute>
+          <PrivateRoute path='/employees/' exact>
             <Employees />
-          </PrivateRouter>
+          </PrivateRoute>
           <Route path="*" exact>
              <Route404/>
           </Route>

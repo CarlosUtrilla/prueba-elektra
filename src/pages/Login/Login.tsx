@@ -7,12 +7,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { useHistory } from 'react-router-dom';
 
 export const Login = () => {
-    const { login, logginState } = useContext(AuthContext);
-    useEffect(() => {
-        if (logginState.logged) {
-            history.replace("/employees")
-        }
-    },[])
+    const { login } = useContext(AuthContext);
 
     const [errorLoggin, setErrorLoggin] = useState(false);
 
