@@ -1,13 +1,17 @@
 import { Request } from "."
 import { RESTEmployee } from './interfaces';
-import { IEmployee } from '../pages/Employees/interfaces';
+import { IEmployee, IEmployeeWithoutId } from '../pages/Employees/interfaces';
+import moment from 'moment';
 
 export const getEmployees = () => {
     return new Promise<IEmployee[]>(resolve => {
         Request<RESTEmployee>().then(data => {
-            console.log(data)
             if (data.success) {
-                resolve(data?.data?.employees!)
+                const employees = data.data?.employees.map(e => ({
+                    ...e,
+                    birthday: moment.utc(e.birthday)
+                })) || []
+                resolve(employees)
             } else {
                 resolve([])
             }
@@ -19,6 +23,6 @@ export const getEmployees = () => {
 }
 
 
-export const setEmployee=(data: IEmployee) => {
-    return Request({body:data, method:"POST"})
+export const setEmployee=(data: IEmployeeWithoutId) => {
+    return Request<{success:boolean, data: string}>({body:data, method:"POST"})
 }

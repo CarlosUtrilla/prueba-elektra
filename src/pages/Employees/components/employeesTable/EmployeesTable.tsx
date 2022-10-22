@@ -36,6 +36,7 @@ export const EmployeesTable = ({ data }: { data: IEmployee[] }) => {
       </Table>
         <TablePagination
           component="div"
+          rowsPerPageOptions={[10]}
           count={data.length}
           rowsPerPage={ROWS_PER_PAGE}
           page={page}

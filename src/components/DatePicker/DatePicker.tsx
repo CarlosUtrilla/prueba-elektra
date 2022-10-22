@@ -6,20 +6,22 @@ import TextField from '@mui/material/TextField';
 import moment from 'moment';
 
 interface IDatePicker {
-    value?: moment.Moment | string | number;
+    value?: moment.Moment | null | number;
     onChange?: (ev: Event) => any;
     name?: string;
     label?: string;
     format?: string;
     fullWidth?: boolean;
     className?: string;
+    error?: boolean;
+    helperText?: string;
 }
 
-export const DatePicker = ({ value = 0, onChange = () => { }, name, label, format, fullWidth, className }: IDatePicker) => {
+export const DatePicker = ({ value = 0, onChange = () => { }, name, label, format, fullWidth, className ,error , helperText}: IDatePicker) => {
   const ref = useRef<HTMLInputElement>(null)
   const handleChange = (value: moment.Moment | null, keyboardInputValue?: string | undefined) => {
     if (ref.current) {
-      ref.current.value = value?.format(format || 'YYYY-MM-DD')!
+      ref.current.value = value?.format(format || 'YYYY/MM/DD')!
       const event = new Event("onHandleChange");
       ref.current.dispatchEvent(event);
     }
@@ -40,8 +42,8 @@ export const DatePicker = ({ value = 0, onChange = () => { }, name, label, forma
         <DesktopDatePicker
               inputFormat={format}
               onChange={handleChange}
-              value={typeof value === "number" ? moment.unix(value) : moment(value)}
-              renderInput={(params) => <TextField {...params} fullWidth={fullWidth} />}
+              value={typeof value === "number" ? moment.unix(value) : Boolean(value) ? moment(value) : ""}
+              renderInput={(params) => <TextField {...params} fullWidth={fullWidth} error={ error } helperText={helperText} variant="filled"/>}
               label={label}
               className={className}
         />
