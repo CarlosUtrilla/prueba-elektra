@@ -1,0 +1,8 @@
+@import "./assets/variables.scss";
+body {
+	background: $background;
+	color: $font-color;
+	padding: 0;
+	margin: 0;
+	font-family: $font-family;
+}
