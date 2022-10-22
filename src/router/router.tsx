@@ -6,6 +6,7 @@ import { Login } from '../pages/Login/Login';
 import { Route404 } from '../pages/route404/route404';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
+import { Upload } from '../pages/Uploads/Upload';
 const Router = () => {
   return (
     <HashRouter>
@@ -16,6 +17,9 @@ const Router = () => {
           </PublicRoute>
           <PrivateRoute path='/employees/' exact>
             <Employees />
+          </PrivateRoute>
+          <PrivateRoute path='/upload/' exact>
+            <Upload />
           </PrivateRoute>
           <Route path="*" exact>
              <Route404/>

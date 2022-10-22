@@ -55,8 +55,10 @@ export const Employees = () => {
       <Modal
           open={openModal}
           onClose={()=>setOpenModal(false)}
-        >
-        <AddNewEmployee onSuccess={ onSuccess } />
+      >
+        <div>
+          <AddNewEmployee onSuccess={onSuccess} />
+        </div>
       </Modal>
     </div>
   )
